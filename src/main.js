@@ -30,13 +30,13 @@ function calculateBonusByProfit(index, total, seller) {
     // @TODO: Расчет бонуса от позиции в рейтинге
     const { profit } = seller;
     if (index === 0) {
-        return +(seller.profit * bonusFirstPlace).toFixed(2);
+        return +(seller.profit * bonusFirstPlace);
     } else if (index === 1 || index === 2) {
-        return +(seller.profit * bonusSecondThirdPlace).toFixed(2);
+        return +(seller.profit * bonusSecondThirdPlace);
     } else if (index === total - 1) {
         return 0;
     } else {
-        return +(seller.profit * bonusOther).toFixed(2);
+        return +(seller.profit * bonusOther);
     }
 }
 
