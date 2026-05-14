@@ -26,10 +26,10 @@ function calculateBonusByProfit(index, total, seller) {
     const { profit } = seller;
     if (index === 0) {
         return +(seller.profit * 0.15);
-    } else if (index === 1 || index === 2) {
-        return +(seller.profit * 0.1);
     } else if (index === total - 1) {
         return 0;
+    } else if (index === 1 || index === 2) {
+        return +(seller.profit * 0.1);
     } else {
         return +(seller.profit * 0.05);
     }
@@ -47,11 +47,10 @@ function analyzeSalesData(data, options) {
     if (!data ||
         !Array.isArray(data.sellers) ||
         !Array.isArray(data.products) ||
-        !Array.isArray(data.customers) ||
+        !Array.isArray(data.purchase_records) ||
         data.sellers.length === 0 ||
         data.purchase_records.length === 0 ||
-        data.products.length === 0 ||
-        data.customers.length === 0
+        data.products.length === 0
     ) {
         throw new Error('Некорректные входные данные');
     }
@@ -60,7 +59,7 @@ function analyzeSalesData(data, options) {
 
     const { calculateRevenue, calculateBonus } = options;
 
-    if (typeof options !== "object" || options === null) {
+    if (typeof options !== "object" || typeof calculateRevenue !== "function" || typeof calculateBonus !== "function") {
         throw new Error('Опции отсутствуют');
     }
     if (!calculateRevenue || !calculateBonus) {
