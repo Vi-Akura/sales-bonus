@@ -24,11 +24,11 @@ function calculateSimpleRevenue(purchase, _product) {
 function calculateBonusByProfit(index, total, seller) {
     // @TODO: Расчет бонуса от позиции в рейтинге
     const { profit } = seller;
-    if (index == 0) {
+    if (index === 0) {
         return +(seller.profit * 0.15);
-    } else if (index == 1 || index == 2) {
+    } else if (index === 1 || index === 2) {
         return +(seller.profit * 0.1);
-    } else if (index == total - 1) {
+    } else if (index === total - 1) {
         return 0;
     } else {
         return +(seller.profit * 0.05);
@@ -46,7 +46,6 @@ function analyzeSalesData(data, options) {
 
     if (!data ||
         !Array.isArray(data.sellers) ||
-        !Array.isArray(data.purchase_records) ||
         !Array.isArray(data.products) ||
         !Array.isArray(data.customers) ||
         data.sellers.length === 0 ||
@@ -133,8 +132,8 @@ function analyzeSalesData(data, options) {
     // @TODO: Подготовка итоговой коллекции с нужными полями
 
     return sellerStats.map(seller => ({
-        seller_id: String(seller.id),
-        name: String(seller.name),
+        seller_id: seller.id,
+        name: seller.name,
         revenue: +seller.revenue.toFixed(2),
         profit: +seller.profit.toFixed(2),
         sales_count: seller.sales_count,
