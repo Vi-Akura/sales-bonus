@@ -123,7 +123,7 @@ function analyzeSalesData(data, options) {
     sellerStats.forEach((seller, index) => {
         seller.bonus = calculateBonusByProfit(index, sellerStats.length, seller);
         seller.top_products = Object.entries(seller.products_sold)
-            .map(([sku, quantity]) => [sku, quantity])
+            .map(([sku, quantity]) => ({sku, quantity}))
             .sort((a, b) => b.quantity - a.quantity)
             .slice(0, 10);
     });
